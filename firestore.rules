@@ -1,0 +1,89 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    function isAdmin() {
+      return signedIn()
+        && exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+        && get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.enabled == true;
+    }
+
+    match /products/{productId} {
+      allow read: if resource.data.active == true || isAdmin();
+      allow create: if isAdmin()
+        && request.resource.data.keys().hasOnly([
+          'name', 'category', 'description', 'material', 'price', 'stock',
+          'imageUrl', 'active', 'createdAt', 'updatedAt'
+        ])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() > 0
+        && request.resource.data.name.size() <= 100
+        && request.resource.data.price is int
+        && request.resource.data.price > 0
+        && request.resource.data.stock is int
+        && request.resource.data.stock >= 0
+        && request.resource.data.active is bool;
+      allow update: if isAdmin()
+        && request.resource.data.keys().hasOnly([
+          'name', 'category', 'description', 'material', 'price', 'stock',
+          'imageUrl', 'active', 'createdAt', 'updatedAt', 'reservedStock'
+        ])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() > 0
+        && request.resource.data.price is int
+        && request.resource.data.price > 0
+        && request.resource.data.stock is int
+        && request.resource.data.stock >= 0
+        && request.resource.data.stock >= resource.data.get('reservedStock', 0)
+        && request.resource.data.get('reservedStock', 0) == resource.data.get('reservedStock', 0);
+      allow delete: if isAdmin();
+    }
+
+    match /users/{uid} {
+      allow read: if isOwner(uid);
+      allow create, update: if isOwner(uid)
+        && request.resource.data.keys().hasOnly([
+          'displayName', 'email', 'phone', 'updatedAt'
+        ])
+        && request.resource.data.displayName is string
+        && request.resource.data.displayName.size() <= 80
+        && request.resource.data.email == request.auth.token.email
+        && request.resource.data.phone is string
+        && request.resource.data.phone.size() <= 30;
+      allow delete: if false;
+
+      match /cart/{productId} {
+        allow read: if isOwner(uid);
+        allow create, update: if isOwner(uid)
+          && request.resource.data.keys().hasOnly(['productId', 'quantity', 'updatedAt'])
+          && request.resource.data.productId == productId
+          && request.resource.data.quantity is int
+          && request.resource.data.quantity >= 1
+          && request.resource.data.quantity <= 10
+          && exists(/databases/$(database)/documents/products/$(productId));
+        allow delete: if isOwner(uid);
+      }
+
+      match /orders/{orderId} {
+        allow read: if isOwner(uid);
+        allow write: if false;
+      }
+
+      match /checkoutLocks/{lockId} {
+        allow read, write: if false;
+      }
+    }
+
+    match /admins/{uid} {
+      allow read: if isOwner(uid);
+      allow write: if false;
+    }
+  }
+}

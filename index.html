@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Jade Verse 翡翠時光，天然翡翠、精湛工藝與現代美學，探索戒指、項鍊與手鍊。">
+<title>Jade Verse｜翡翠時光</title>
+<style>
+:root{
+  --green:#234b3c; --deep:#142f27; --sage:#b7b9a7; --cream:#f6f2e9;
+  --paper:#fffdf8; --gold:#c5a36b; --ink:#252c28; --muted:#737a73;
+  --line:#e4e0d6; --radius:16px; --shadow:0 10px 30px rgba(23,47,38,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans TC","Microsoft JhengHei",Arial,sans-serif;line-height:1.7}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit}
+button{cursor:pointer}
+img{display:block;max-width:100%}
+.announcement{background:var(--deep);color:#f8f5ec;text-align:center;padding:7px 14px;font-size:12px;letter-spacing:.08em}
+header{position:sticky;top:0;z-index:20;background:rgba(255,253,248,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{max-width:1200px;margin:auto;min-height:72px;padding:0 22px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{display:flex;align-items:center;gap:10px;color:var(--green);min-width:180px}
+.logo-mark{width:42px;height:42px;border:1px solid var(--green);border-radius:50%;display:grid;place-items:center;font-family:serif;font-size:22px}
+.logo strong{font-family:Georgia,serif;font-size:20px;letter-spacing:.08em;display:block;line-height:1.2}
+.logo small{font-size:10px;letter-spacing:.18em}
+nav{display:flex;gap:25px;align-items:center;font-size:14px}
+nav a{padding:25px 0;border-bottom:2px solid transparent}
+nav a:hover{color:var(--green);border-color:var(--gold)}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.icon-btn,.menu-btn{border:0;background:transparent;color:var(--green);font-size:20px;padding:6px}
+.cart-count{display:inline-grid;place-items:center;min-width:20px;height:20px;border-radius:50%;background:var(--green);color:white;font-size:11px;margin-left:2px}
+.menu-btn{display:none}
+.hero{min-height:480px;background:linear-gradient(90deg,rgba(11,34,26,.82),rgba(11,34,26,.35) 55%,rgba(11,34,26,.05)),url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=2000&q=85') center/cover;display:flex;align-items:center;color:white}
+.hero-inner{width:min(1200px,100%);margin:auto;padding:70px 24px}
+.eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase}
+.hero h1{font-family:"Noto Serif TC","Songti TC",serif;font-size:clamp(34px,5vw,60px);font-weight:500;line-height:1.35;letter-spacing:.08em;margin:18px 0}
+.hero p{max-width:520px;color:#f0eee6;font-size:16px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:999px;border:1px solid var(--green);background:var(--green);color:white;transition:.2s}
+.btn:hover{background:var(--deep);transform:translateY(-1px)}
+.btn.light{background:transparent;border-color:rgba(255,255,255,.75);color:white}
+.btn.light:hover{background:white;color:var(--green)}
+.btn.outline{background:transparent;color:var(--green)}
+.btn.outline:hover{background:var(--green);color:white}
+.trust-strip{display:grid;grid-template-columns:repeat(4,1fr);max-width:1200px;margin:auto;padding:22px 24px;border-bottom:1px solid var(--line);gap:15px}
+.trust-item{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--muted);font-size:13px}
+.trust-item span{font-size:22px;color:var(--green)}
+section{padding:72px 24px}
+.section-inner{max-width:1200px;margin:auto}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:28px}
+.kicker{color:var(--green);font-size:11px;letter-spacing:.2em;text-transform:uppercase}
+h2{font-family:"Noto Serif TC","Songti TC",serif;font-size:clamp(26px,3vw,38px);font-weight:500;line-height:1.35;margin:7px 0}
+.section-head p,.intro{color:var(--muted);margin:8px 0 0}
+.text-link{color:var(--green);font-size:14px;border-bottom:1px solid var(--gold);padding-bottom:4px;white-space:nowrap}
+.categories{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.category-card{position:relative;overflow:hidden;border-radius:var(--radius);min-height:300px;background:#d9d7ca}
+.category-card img{width:100%;height:330px;object-fit:cover;transition:transform .5s}
+.category-card:hover img{transform:scale(1.04)}
+.category-card:after{content:"";position:absolute;inset:35% 0 0;background:linear-gradient(transparent,rgba(8,27,20,.75))}
+.category-copy{position:absolute;z-index:1;bottom:20px;left:22px;color:white}
+.category-copy h3{font-family:serif;font-size:28px;margin:0}
+.category-copy span{font-size:12px;letter-spacing:.15em}
+.product-tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.filter-btn{border:1px solid var(--line);background:transparent;border-radius:999px;padding:8px 17px;color:var(--muted)}
+.filter-btn.active,.filter-btn:hover{background:var(--green);border-color:var(--green);color:white}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.product-card{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:white;transition:transform .2s,box-shadow .2s}
+.product-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.product-image{position:relative;background:var(--cream);aspect-ratio:1/1.05;overflow:hidden}
+.product-image img{width:100%;height:100%;object-fit:cover}
+.tag{position:absolute;top:12px;left:12px;background:#fffdf0;color:var(--green);border-radius:999px;padding:4px 10px;font-size:11px}
+.product-info{padding:16px}
+.product-info h3{font-size:16px;font-weight:500;margin:0 0 5px}
+.product-meta{font-size:12px;color:var(--muted)}
+.price-row{display:flex;align-items:center;justify-content:space-between;margin:12px 0}
+.price{font-weight:700;color:var(--green)}
+.rating{color:#bd8a35;font-size:12px}
+.add-btn{width:100%;padding:10px;border:0;border-radius:8px;background:var(--green);color:white}
+.add-btn:hover{background:var(--deep)}
+.feature-band{background:var(--cream)}
+.finder{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:44px}
+.finder-photo{border-radius:var(--radius);overflow:hidden;min-height:360px}
+.finder-photo img{width:100%;height:100%;object-fit:cover;min-height:360px}
+.finder-panel{padding:10px 0}
+.finder-options{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:24px 0}
+.finder-option{border:1px solid #d8d5ca;border-radius:10px;background:rgba(255,255,255,.55);padding:14px;text-align:left;color:var(--ink)}
+.finder-option.selected,.finder-option:hover{border-color:var(--green);background:white}
+.finder-result{color:var(--green);font-size:14px;min-height:25px;margin-bottom:12px}
+.knowledge-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.article-card{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:white}
+.article-card img{width:100%;height:190px;object-fit:cover}
+.article-copy{padding:20px}
+.article-copy .label{font-size:11px;color:var(--green);letter-spacing:.1em}
+.article-copy h3{font-size:18px;margin:8px 0;font-weight:500}
+.article-copy p{font-size:14px;color:var(--muted)}
+.story{display:grid;grid-template-columns:1fr 1fr;background:var(--deep);color:white;overflow:hidden;border-radius:var(--radius)}
+.story img{width:100%;height:100%;min-height:390px;object-fit:cover}
+.story-copy{padding:clamp(28px,5vw,64px);align-self:center}
+.story-copy p{color:#d8ded7}
+.story-copy .kicker{color:#c9b27e}
+.care-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
+.care-card{padding:24px;border:1px solid var(--line);border-radius:var(--radius);background:white}
+.care-icon{font-size:27px}
+.care-card h3{font-size:17px;font-weight:500}
+.care-card p{font-size:14px;color:var(--muted);margin-bottom:0}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.review{padding:24px;border:1px solid var(--line);border-radius:var(--radius);background:white}
+.review .stars{color:#bd8a35;letter-spacing:.12em}
+.review p{font-size:14px;color:#555e57}
+.review strong{font-size:13px}
+.faq-list{max-width:850px;margin:25px auto 0}
+details{border-bottom:1px solid var(--line);padding:17px 0}
+summary{cursor:pointer;font-weight:500;display:flex;justify-content:space-between;gap:15px}
+details p{color:var(--muted);font-size:14px;margin-bottom:0}
+.newsletter{background:#e8e8dc;padding:45px 24px}
+.newsletter-inner{max-width:900px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:30px}
+.newsletter form{display:flex;gap:8px;min-width:min(430px,100%)}
+.newsletter input{flex:1;min-width:0;border:1px solid #d0d0c4;background:white;padding:12px 14px;border-radius:999px}
+footer{background:var(--deep);color:#e8ece5;padding:42px 24px 20px}
+.footer-inner{max-width:1200px;margin:auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px;padding-bottom:30px}
+.footer-brand p{color:#bdc8be;font-size:13px;max-width:300px}
+footer h4{font-size:14px;margin:0 0 12px;color:#fff}
+footer a,footer p{font-size:13px;color:#bdc8be}
+.footer-links{display:grid;gap:8px}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.18);padding-top:16px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;color:#aebbb1;font-size:12px}
+.cart-toast{position:fixed;right:20px;bottom:20px;background:var(--deep);color:white;padding:14px 20px;border-radius:12px;box-shadow:var(--shadow);z-index:50;opacity:0;transform:translateY(10px);pointer-events:none;transition:.25s}
+.cart-toast.show{opacity:1;transform:translateY(0)}
+.member-trigger{border:0;background:transparent;color:var(--green);font-size:20px;padding:6px}
+.member-dialog{width:min(460px,calc(100% - 28px));max-height:min(760px,calc(100dvh - 32px));padding:0;border:1px solid var(--line);background:var(--paper);color:var(--ink);box-shadow:0 24px 80px rgba(15,35,27,.28)}
+.member-dialog::backdrop{background:rgba(15,35,27,.58);backdrop-filter:blur(3px)}
+.member-panel{position:relative;padding:30px}
+.member-close{position:absolute;top:14px;right:16px;width:36px;height:36px;border:1px solid var(--line);background:transparent;color:var(--green);font-size:21px}
+.member-kicker{margin:0 0 6px;color:var(--green);font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+.member-panel h2{margin:0 44px 8px 0;font-size:29px}
+.member-lead{margin:0 0 21px;color:var(--muted);font-size:13px}
+.member-tabs{display:grid;grid-template-columns:1fr 1fr;margin-bottom:20px;border-bottom:1px solid var(--line)}
+.member-tab{padding:11px 8px;border:0;border-bottom:2px solid transparent;background:transparent;color:var(--muted);font-size:13px}
+.member-tab[aria-selected="true"]{border-color:var(--green);color:var(--green);font-weight:700}
+.member-form{display:grid;gap:13px}
+.member-form[hidden],.member-dashboard[hidden],.member-view[hidden]{display:none}
+.member-form label{display:grid;gap:5px;color:var(--ink);font-size:12px;font-weight:600}
+.member-form input{width:100%;min-height:44px;padding:0 12px;border:1px solid #d4d4c8;border-radius:2px;background:#fff;color:var(--ink);outline-color:var(--green)}
+.member-consent{display:flex!important;grid-template-columns:17px 1fr;align-items:start;gap:9px!important;color:var(--muted)!important;font-weight:400!important;line-height:1.6}
+.member-consent input{width:16px;min-height:16px;margin:3px 0 0;accent-color:var(--green)}
+.member-submit{min-height:46px;border:0;background:var(--green);color:white;font-size:13px;font-weight:600}
+.member-submit:hover{background:var(--deep)}
+.member-note{margin:16px 0 0;padding:11px 12px;background:#eeeee5;color:var(--muted);font-size:10px;line-height:1.7}
+.member-feedback{min-height:21px;margin:0;color:#9a4538;font-size:12px}
+.member-dashboard{display:grid;gap:14px}
+.member-welcome{padding:17px;background:var(--deep);color:white}
+.member-welcome small{color:#d2d9d0;font-size:11px}
+.member-welcome h3{margin:4px 0 0;font:500 22px/1.4 "Noto Serif TC","Songti TC",serif}
+.member-benefits{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.member-benefit{padding:14px;border:1px solid var(--line);background:white}
+.member-benefit strong{display:block;color:var(--green);font-size:18px}
+.member-benefit span{color:var(--muted);font-size:10px}
+.member-orders{padding:14px;border:1px solid var(--line);font-size:12px}
+.member-orders strong{display:block;margin-bottom:5px}
+.member-orders p{margin:0;color:var(--muted)}
+.member-logout{min-height:40px;border:1px solid var(--line);background:transparent;color:var(--green);font-size:12px}
+.product-open{display:block;width:100%;padding:0;border:0;background:transparent;text-align:left;color:inherit}
+.product-open h3{font:inherit}
+.product-stock{color:var(--muted);font-size:11px}
+.commerce-dialog{width:min(620px,calc(100% - 28px));max-height:min(820px,calc(100dvh - 32px));padding:0;border:1px solid var(--line);background:var(--paper);color:var(--ink);box-shadow:0 24px 80px rgba(15,35,27,.28)}
+.commerce-dialog::backdrop{background:rgba(15,35,27,.58);backdrop-filter:blur(3px)}
+.commerce-panel{position:relative;max-height:min(820px,calc(100dvh - 32px));overflow:auto;padding:30px}
+.commerce-close{position:absolute;z-index:1;top:13px;right:14px;width:38px;height:38px;border:1px solid var(--line);background:var(--paper);color:var(--green);font-size:22px}
+.commerce-panel h2{margin:0 48px 8px 0;font-size:28px}
+.commerce-lead{margin:0 0 22px;color:var(--muted);font-size:13px}
+.commerce-form{display:grid;gap:13px}
+.commerce-form label{display:grid;gap:5px;font-size:12px;font-weight:600}
+.commerce-form input,.commerce-form textarea,.commerce-form select{width:100%;min-height:43px;padding:9px 12px;border:1px solid #d4d4c8;border-radius:2px;background:white;color:var(--ink);outline-color:var(--green)}
+.commerce-form textarea{min-height:90px;resize:vertical}
+.commerce-submit{min-height:45px;border:0;background:var(--green);color:white;font-size:13px;font-weight:600}
+.commerce-submit:disabled{opacity:.6;cursor:wait}
+.commerce-message{min-height:20px;margin:0;color:var(--green);font-size:12px}
+.commerce-message.error{color:#a34435}
+.commerce-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
+.commerce-secondary{min-height:40px;padding:0 15px;border:1px solid var(--line);background:transparent;color:var(--green);font-size:12px}
+.commerce-tabs{display:grid;grid-template-columns:1fr 1fr;margin-bottom:18px;border-bottom:1px solid var(--line)}
+.commerce-tab{padding:10px;border:0;border-bottom:2px solid transparent;background:transparent;color:var(--muted)}
+.commerce-tab[aria-selected="true"]{border-color:var(--green);color:var(--green);font-weight:700}
+.member-profile[hidden],.member-auth[hidden],.admin-trigger[hidden]{display:none}
+.member-orders-list,.admin-product-list{display:grid;gap:9px;margin:18px 0}
+.order-row,.admin-product-row,.cart-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px;border:1px solid var(--line);background:white;font-size:12px}
+.order-row small,.admin-product-row small{display:block;color:var(--muted)}
+.cart-row img{width:64px;height:64px;object-fit:cover;background:var(--cream)}
+.cart-row-main{flex:1;min-width:0}
+.cart-row-main strong{display:block}
+.cart-row-actions{display:flex;align-items:center;gap:7px}
+.cart-quantity{min-width:18px;text-align:center;font-size:12px}
+.cart-stepper,.cart-remove{width:30px;height:30px;border:1px solid var(--line);background:transparent;color:var(--green)}
+.cart-remove{width:auto;padding:0 8px;color:#934d3d;font-size:10px}
+.cart-summary{display:flex;justify-content:space-between;margin:18px 0;font-size:15px;font-weight:700}
+.empty-state{padding:36px 12px;color:var(--muted);text-align:center;font-size:13px}
+.detail-image{width:100%;max-height:340px;aspect-ratio:4/3;object-fit:cover;background:var(--cream)}
+.detail-description{color:var(--muted);font-size:13px;white-space:pre-line}
+.admin-product-row button{min-height:32px;padding:0 10px;border:1px solid var(--line);background:white;color:var(--green);font-size:11px}
+.admin-trigger{margin-top:12px}
+.mobile-nav{display:none}
+@media(max-width:900px){
+ nav{gap:13px;font-size:12px}.logo{min-width:150px}.products{grid-template-columns:repeat(2,1fr)}
+ .trust-strip{grid-template-columns:repeat(2,1fr)}.footer-top{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:650px){
+ .nav{min-height:64px;padding:0 16px}.logo strong{font-size:17px}.logo-mark{width:36px;height:36px}
+ nav{display:none}.menu-btn{display:inline-block}.hero{min-height:500px;background-position:60% center}.hero-inner{padding:58px 22px}
+ section{padding:52px 18px}.section-head{align-items:start;flex-direction:column}.categories{grid-template-columns:1fr;gap:14px}
+ .category-card,.category-card img{height:250px;min-height:250px}.products{gap:12px}.product-info{padding:12px}.product-info h3{font-size:14px}
+ .finder{grid-template-columns:1fr;gap:25px}.finder-photo,.finder-photo img{min-height:260px;height:260px}
+ .knowledge-grid,.care-grid,.reviews{grid-template-columns:1fr}.article-card img{height:210px}
+ .story{grid-template-columns:1fr}.story img{min-height:250px;height:250px}.newsletter-inner{align-items:flex-start;flex-direction:column}.newsletter form{width:100%;min-width:0}
+ .footer-top{grid-template-columns:1fr 1fr;gap:25px}.footer-brand{grid-column:1/-1}
+ .trust-item{justify-content:flex-start;font-size:12px}.trust-strip{padding:18px}
+}
+</style>
+</head>
+<body>
+<div class="announcement">天然翡翠 × 精湛工藝 × 現代美學　｜　滿額免運與活動依結帳頁公告為準</div>
+<header>
+  <div class="nav">
+    <a class="logo" href="#home" aria-label="Jade Verse 首頁">
+      <span class="logo-mark">翠</span><span><strong>Jade Verse</strong><small>翡翠・時光・你</small></span>
+    </a>
+    <nav aria-label="主要選單">
+      <a href="#home">首頁</a><a href="#shop">購買翡翠</a><a href="#knowledge">天然石知識</a><a href="#story">品牌故事</a><a href="#care">保養方式</a><a href="#service">購物服務</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" aria-label="搜尋" onclick="document.getElementById('search').focus()">⌕</button>
+      <button class="member-trigger" id="memberTrigger" type="button" aria-label="開啟會員中心">♙</button>
+      <button class="icon-btn" id="cartTrigger" type="button" aria-label="開啟購物車">♧ <span class="cart-count" id="cartCount">0</span></button>
+      <button class="menu-btn" id="menuBtn" aria-label="開啟選單" aria-expanded="false">☰</button>
+    </div>
+  </div>
+  <div class="mobile-nav" id="mobileNav" style="display:none;padding:0 20px 18px;gap:14px;flex-wrap:wrap">
+    <a href="#shop">購買翡翠</a><a href="#knowledge">天然石知識</a><a href="#story">品牌故事</a><a href="#care">保養方式</a><a href="#service">購物服務</a>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="eyebrow">NATURAL JADE · MODERN LIVING</div>
+    <h1>一件翡翠，<br>收藏生命的美好時光。</h1>
+    <p>天然翡翠 × 精湛工藝 × 現代美學<br>讓東方的溫潤之美，成為你日常風格的一部分。</p>
+    <div class="actions"><a class="btn" href="#shop">探索所有作品　→</a><a class="btn light" href="#finder">找到適合我的翡翠</a></div>
+  </div>
+</section>
+
+<div class="trust-strip">
+  <div class="trust-item"><span>◇</span>材質資訊清楚標示</div>
+  <div class="trust-item"><span>✧</span>細膩工藝與設計</div>
+  <div class="trust-item"><span>▤</span>安心購物資訊</div>
+  <div class="trust-item"><span>♡</span>日常佩戴與保養指南</div>
+</div>
+
+<section id="shop">
+  <div class="section-inner">
+    <div class="section-head">
+      <div><div class="kicker">Find your own jade</div><h2>挑選你的日常翡翠</h2><p>從簡約設計到獨特收藏，找到與自己風格相契合的作品。</p></div>
+      <a class="text-link" href="#products">瀏覽全部商品　→</a>
+    </div>
+    <div class="categories">
+      <a class="category-card" href="#products" data-filter-link="戒指"><img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=85" alt="戒指珠寶"><div class="category-copy"><h3>戒指</h3><span>RINGS　→</span></div></a>
+      <a class="category-card" href="#products" data-filter-link="項鍊"><img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=800&q=85" alt="項鍊珠寶"><div class="category-copy"><h3>項鍊</h3><span>NECKLACES　→</span></div></a>
+      <a class="category-card" href="#products" data-filter-link="手鍊"><img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=800&q=85" alt="手鍊珠寶"><div class="category-copy"><h3>手鍊</h3><span>BRACELETS　→</span></div></a>
+    </div>
+  </div>
+</section>
+
+<section class="feature-band" id="products">
+  <div class="section-inner">
+    <div class="section-head">
+      <div><div class="kicker">Curated for you</div><h2>人氣精選</h2><p>細節、比例與質感，讓每一件作品融入你的日常。</p></div>
+      <span class="text-link" id="resultCount">精選商品</span>
+    </div>
+    <div class="product-tools">
+      <input id="search" type="search" placeholder="搜尋商品名稱…" aria-label="搜尋商品" style="padding:9px 14px;border:1px solid var(--line);border-radius:999px;min-width:190px;background:white">
+      <button class="filter-btn active" data-filter="全部">全部商品</button>
+      <button class="filter-btn" data-filter="戒指">戒指</button>
+      <button class="filter-btn" data-filter="項鍊">項鍊</button>
+      <button class="filter-btn" data-filter="手鍊">手鍊</button>
+    </div>
+    <div class="products" id="productGrid" aria-live="polite"><p class="empty-state">正在連線商品資料…</p></div>
+    <p class="intro" id="productNotice" style="font-size:12px;margin-top:18px"></p>
+  </div>
+</section>
+
+<section id="finder">
+  <div class="section-inner finder">
+    <div class="finder-photo"><img src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=1000&q=85" alt="現代珠寶搭配靈感"></div>
+    <div class="finder-panel">
+      <div class="kicker">Your jade, your story</div><h2>找到適合你的翡翠</h2>
+      <p class="intro">從佩戴情境開始，讓選擇更簡單。選一個你最在意的方向：</p>
+      <div class="finder-options">
+        <button class="finder-option" data-choice="日常佩戴">☀️　日常佩戴<br><small>簡約、輕巧、好搭配</small></button>
+        <button class="finder-option" data-choice="個性穿搭">✦　個性穿搭<br><small>有設計感、展現自我</small></button>
+        <button class="finder-option" data-choice="送禮心意">♡　送禮心意<br><small>有故事、有紀念價值</small></button>
+        <button class="finder-option" data-choice="收藏欣賞">◇　收藏欣賞<br><small>重視工藝與材質資訊</small></button>
+      </div>
+      <div class="finder-result" id="finderResult" aria-live="polite">選擇一項，我們會提供挑選方向。</div>
+      <a class="btn" href="#products" id="finderLink">看看精選作品　→</a>
+    </div>
+  </div>
+</section>
+
+<section id="knowledge">
+  <div class="section-inner">
+    <div class="section-head"><div><div class="kicker">Jade knowledge</div><h2>天然石知識</h2><p>從認識材質開始，讓每一次選擇都更有把握。</p></div></div>
+    <div class="knowledge-grid">
+      <article class="article-card"><img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=800&q=85" alt="珠寶材質細節"><div class="article-copy"><span class="label">新手入門</span><h3>翡翠與玉，有什麼不同？</h3><p>認識常見玉石名稱，了解選購時值得留意的材質資訊。</p><a class="text-link" href="#service">閱讀指南　→</a></div></article>
+      <article class="article-card"><img src="https://images.unsplash.com/photo-1519682337058-a94d519337bc?auto=format&fit=crop&w=800&q=85" alt="自然石紋理"><div class="article-copy"><span class="label">選購指南</span><h3>如何看懂翡翠的色澤與質地？</h3><p>了解顏色、透明度、質地與工藝如何影響整體觀感。</p><a class="text-link" href="#service">閱讀指南　→</a></div></article>
+      <article class="article-card"><img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=800&q=85" alt="筆記與學習"><div class="article-copy"><span class="label">安心購買</span><h3>購買前，證書要看哪些資訊？</h3><p>了解證書與商品描述的用途，購買前主動確認重要細節。</p><a class="text-link" href="#service">閱讀指南　→</a></div></article>
+    </div>
+  </div>
+</section>
+
+<section id="story" class="feature-band">
+  <div class="section-inner story">
+    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1000&q=85" alt="現代女性日常風格">
+    <div class="story-copy"><div class="kicker">Our story</div><h2>讓翡翠，成為今天的日常。</h2><p>我們相信，翡翠不必只存在於重要場合，也可以陪伴每一個平凡卻閃亮的日子。以天然材質為起點，以細膩工藝為底蘊，再用現代設計重新描繪東方之美。</p><p>每一件作品，都應該讓佩戴的人感到自在，也留下屬於自己的故事。</p><a class="btn light" href="#care">認識我們的理念　→</a></div>
+  </div>
+</section>
+
+<section id="care">
+  <div class="section-inner">
+    <div class="section-head"><div><div class="kicker">Care guide</div><h2>好好保養，讓美長久相伴</h2><p>溫柔對待每一件飾品，日常保養其實很簡單。</p></div></div>
+    <div class="care-grid">
+      <article class="care-card"><div class="care-icon">♧</div><h3>日常佩戴</h3><p>劇烈運動、搬運重物或可能碰撞時，建議先取下飾品，避免撞擊與刮擦。</p></article>
+      <article class="care-card"><div class="care-icon">◌</div><h3>溫和清潔</h3><p>可先用柔軟布料擦拭；若需清潔，先確認商品處理方式，再採用溫和方式。</p></article>
+      <article class="care-card"><div class="care-icon">◇</div><h3>妥善收納</h3><p>單獨放入柔軟袋或飾品盒，避免與其他珠寶互相摩擦，也避免接觸強酸鹼清潔劑。</p></article>
+    </div>
+    <p class="intro" style="font-size:13px;margin-top:18px">不同翡翠與天然石可能有不同處理方式；高價或經處理的作品，請優先依賣家提供的保養說明操作。</p>
+  </div>
+</section>
+
+<section class="feature-band">
+  <div class="section-inner">
+    <div class="section-head"><div><div class="kicker">Words from customers</div><h2>佩戴者的日常故事</h2><p>以下為版面示意文案；正式上線時請換成真實顧客授權的心得。</p></div></div>
+    <div class="reviews">
+      <article class="review"><div class="stars">★★★★★</div><p>「設計很簡潔，平常穿襯衫或 T-shirt 都很好搭，終於找到不會太正式的翡翠飾品。」</p><strong>— 顧客 A｜日常穿搭</strong></article>
+      <article class="review"><div class="stars">★★★★★</div><p>「商品資訊整理得清楚，第一次挑選時比較知道自己應該確認哪些細節。」</p><strong>— 顧客 B｜初次選購</strong></article>
+      <article class="review"><div class="stars">★★★★★</div><p>「買來當紀念禮物，包裝與設計都很有質感，也很喜歡背後的品牌理念。」</p><strong>— 顧客 C｜送禮選擇</strong></article>
+    </div>
+  </div>
+</section>
+
+<section id="service">
+  <div class="section-inner">
+    <div class="section-head"><div><div class="kicker">Shopping support</div><h2>購物服務與常見問題</h2><p>購買前先了解細節，選得安心、買得放心。</p></div></div>
+    <div class="faq-list">
+      <details><summary>如何確認商品材質與處理資訊？ <span>＋</span></summary><p>請查看個別商品頁的材質、處理方式與證書資訊；若資訊未完整列出，建議在下單前聯絡客服確認。</p></details>
+      <details><summary>網站可以直接完成付款嗎？ <span>＋</span></summary><p>網站已整合 Firebase 購物車與 Stripe Checkout；正式付款需先完成 Firebase Functions、Stripe 金鑰及 Webhook 設定，並測試訂單流程。物流與退換貨服務仍需另行設定。</p></details>
+      <details><summary>配送、退換貨與保固如何辦理？ <span>＋</span></summary><p>請依正式公告的配送、退換貨與售後服務政策為準。上線前應補上實際條款與客服聯絡方式。</p></details>
+      <details><summary>如何聯絡客服？ <span>＋</span></summary><p>請將此區替換成實際客服信箱、LINE 官方帳號、服務時間與回覆方式。</p></details>
+    </div>
+  </div>
+</section>
+
+<div class="newsletter">
+  <div class="newsletter-inner"><div><div class="kicker">Stay in touch</div><h2 style="font-size:27px">訂閱翡翠時光</h2><p class="intro">接收新品故事、天然石知識與品牌消息。</p></div>
+    <form id="newsletterForm"><input type="email" id="emailInput" placeholder="輸入你的 Email" aria-label="電子郵件" required><button class="btn" type="submit">立即訂閱　→</button></form>
+  </div>
+</div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand"><a class="logo" href="#home" style="color:#f8f5ec"><span class="logo-mark" style="border-color:#d2d9d0">翠</span><span><strong>Jade Verse</strong><small>翡翠・時光・你</small></span></a><p>天然翡翠 × 精湛工藝 × 現代美學。把自然戴在身上，把時間留在身邊。</p></div>
+      <div><h4>購買翡翠</h4><div class="footer-links"><a href="#products">戒指</a><a href="#products">項鍊</a><a href="#products">手鍊</a><a href="#products">人氣精選</a></div></div>
+      <div><h4>探索品牌</h4><div class="footer-links"><a href="#knowledge">天然石知識</a><a href="#story">品牌故事</a><a href="#care">保養方式</a></div></div>
+      <div><h4>購物服務</h4><div class="footer-links"><a href="#service">常見問題</a><a href="#service">配送與付款</a><a href="#service">退換貨政策</a><a href="mailto:hello@jadeverse.example">聯絡客服</a></div></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Jade Verse. 示範網站，品牌及商品資訊請於正式上線前確認。</span><span><a href="#service">隱私權政策</a>　｜　<a href="#service">服務條款</a></span></div>
+  </div>
+</footer>
+<div class="cart-toast" id="cartToast" role="status" aria-live="polite">已加入購物車</div>
+
+<dialog class="member-dialog" id="memberDialog" aria-labelledby="memberTitle">
+  <div class="member-panel">
+    <button class="member-close" type="button" data-close-dialog aria-label="關閉會員中心">×</button>
+    <p class="member-kicker">Jade Verse membership</p><h2 id="memberTitle">會員中心</h2><p class="member-lead" id="memberStatus">登入或建立帳號以開始購物。</p>
+    <div id="memberAuthView" class="member-auth">
+      <div class="commerce-tabs" role="tablist" aria-label="會員登入或註冊">
+        <button class="commerce-tab" type="button" id="loginTab" role="tab" aria-selected="true">會員登入</button>
+        <button class="commerce-tab" type="button" id="signupTab" role="tab" aria-selected="false">加入會員</button>
+      </div>
+      <form class="commerce-form" id="loginForm">
+        <label>Email<input name="email" type="email" autocomplete="email" required></label>
+        <label>密碼<input name="password" type="password" autocomplete="current-password" minlength="8" required></label>
+        <p class="commerce-message" id="loginMessage" aria-live="polite"></p>
+        <button class="commerce-submit" type="submit">登入</button>
+        <button class="commerce-secondary" id="resetPassword" type="button">寄送密碼重設信</button>
+      </form>
+      <form class="commerce-form" id="signupForm" hidden>
+        <label>姓名<input name="displayName" autocomplete="name" maxlength="80" required></label>
+        <label>Email<input name="email" type="email" autocomplete="email" required></label>
+        <label>密碼<input name="password" type="password" autocomplete="new-password" minlength="8" required></label>
+        <p class="commerce-message" id="signupMessage" aria-live="polite"></p>
+        <button class="commerce-submit" type="submit">建立會員帳號</button>
+      </form>
+    </div>
+    <section class="member-profile" id="memberProfile" hidden aria-label="會員資料維護">
+      <form class="commerce-form" id="profileForm">
+        <label>Email<input name="email" type="email" readonly></label>
+        <label>姓名<input name="displayName" maxlength="80" required></label>
+        <label>電話<input name="phone" type="tel" maxlength="30" autocomplete="tel"></label>
+        <p class="commerce-message" id="profileMessage" aria-live="polite"></p>
+        <button class="commerce-submit" type="submit">儲存會員資料</button>
+      </form>
+      <div class="commerce-actions"><button class="commerce-secondary" id="viewOrders" type="button">重新載入訂單</button><button class="commerce-secondary" id="memberLogout" type="button">登出</button></div>
+      <div class="member-orders-list" id="orderList"><p class="empty-state">登入後載入訂單…</p></div>
+      <button class="commerce-secondary admin-trigger" id="adminTrigger" type="button" hidden>商品管理</button>
+    </section>
+  </div>
+</dialog>
+
+<dialog class="commerce-dialog" id="cartDialog" aria-labelledby="cartTitle">
+  <div class="commerce-panel"><button class="commerce-close" type="button" data-close-dialog aria-label="關閉購物車">×</button><p class="kicker">Your selection</p><h2 id="cartTitle">購物車</h2><p class="commerce-lead">商品與價格會在建立安全付款頁前由伺服器再次確認。</p><div id="cartItems"><p class="empty-state">購物車是空的。</p></div><div class="cart-summary"><span>合計</span><span id="cartTotal">NT$ 0</span></div><p class="commerce-message" id="cartMessage" aria-live="polite"></p><button class="commerce-submit" id="checkoutButton" type="button">前往安全付款</button></div>
+</dialog>
+
+<dialog class="commerce-dialog" id="productDialog" aria-labelledby="detailName">
+  <div class="commerce-panel"><button class="commerce-close" type="button" data-close-dialog aria-label="關閉商品細節">×</button><img class="detail-image" id="detailImage" alt=""><p class="kicker" id="detailCategory"></p><h2 id="detailName"></h2><p class="price" id="detailPrice"></p><p class="detail-description" id="detailDescription"></p><p class="product-stock" id="detailStock"></p><button class="commerce-submit" id="detailAdd" type="button">加入購物車</button></div>
+</dialog>
+
+<dialog class="commerce-dialog" id="adminDialog" aria-labelledby="adminTitle">
+  <div class="commerce-panel"><button class="commerce-close" type="button" data-close-dialog aria-label="關閉商品管理">×</button><p class="kicker">Admin catalog</p><h2 id="adminTitle">商品管理</h2><p class="commerce-lead">僅限已授權管理者建立、編輯或下架商品。</p>
+    <form class="commerce-form" id="productForm">
+      <input type="hidden" name="productId">
+      <label>商品名稱<input name="name" maxlength="100" required></label>
+      <label>分類<select name="category" required><option value="戒指">戒指</option><option value="項鍊">項鍊</option><option value="手鍊">手鍊</option><option value="耳環">耳環</option></select></label>
+      <label>材質／特色<input name="material" maxlength="160" required></label>
+      <label>商品說明<textarea name="description" maxlength="2000" required></textarea></label>
+      <label>價格（新台幣元）<input name="price" type="number" min="1" step="1" required></label>
+      <label>庫存<input name="stock" type="number" min="0" step="1" required></label>
+      <label>上傳商品圖片<input name="imageFile" type="file" accept="image/jpeg,image/png,image/webp,image/gif"></label>
+      <p class="commerce-lead">支援 JPG、PNG、WebP、GIF，最大 5 MB。也可以使用 HTTPS 圖片網址。</p>
+      <label>或輸入商品圖片 HTTPS 網址<input name="imageUrl" type="url" placeholder="https://…"></label>
+      <label><span>上架狀態</span><select name="active"><option value="true">上架</option><option value="false">下架</option></select></label>
+      <p class="commerce-message" id="productMessage" aria-live="polite"></p>
+      <button class="commerce-submit" type="submit">建立商品</button>
+      <button class="commerce-secondary" id="cancelProductEdit" type="button" hidden>取消編輯</button>
+    </form><div class="admin-product-list" id="adminProductList"></div>
+  </div>
+</dialog>
+
+<script type="module" src="app.js?v=5"></script>
+</body>
+</html>
